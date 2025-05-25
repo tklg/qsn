@@ -29,9 +29,11 @@ describe("QSN", () => {
 
     it("should encode and decode strings", () => {
       expect(QSN.parse(QSN.stringify("hello"))).toBe("hello");
+      expect(QSN.parse(QSN.stringify("hello world!"))).toBe("hello world!");
       expect(QSN.parse(QSN.stringify("!,:["))).toBe("!,:[");
 
       expect(QSN.stringify("hello")).toMatchSnapshot();
+      expect(QSN.stringify("hello world!")).toMatchSnapshot();
       expect(QSN.stringify("!,:[")).toMatchSnapshot();
     });
 
@@ -66,7 +68,7 @@ describe("QSN", () => {
     it("should encode and decode complex structures", () => {
       const value = {
         arr: [1, { foo: "bar", baz: [true, false, null] }],
-        str: "hello,world!",
+        str: "hello, world!",
         num: 123,
         bool: true,
         nil: null,

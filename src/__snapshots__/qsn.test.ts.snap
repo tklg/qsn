@@ -6,7 +6,7 @@ exports[`QSN > stringify and parse > should encode and decode booleans 1`] = `"!
 
 exports[`QSN > stringify and parse > should encode and decode booleans 2`] = `"!f"`;
 
-exports[`QSN > stringify and parse > should encode and decode complex structures 1`] = `"[arr:[!1,[foo:bar,baz:[!t,!f,!n]]],str:hello!,world!!,num:!123,bool:!t,nil:!n]"`;
+exports[`QSN > stringify and parse > should encode and decode complex structures 1`] = `"[arr:[!1,[foo:bar,baz:[!t,!f,!n]]],str:hello!, world!!,num:!123,bool:!t,nil:!n]"`;
 
 exports[`QSN > stringify and parse > should encode and decode nested arrays 1`] = `"[!1,[!2,[!3,!n]],test]"`;
 
@@ -22,7 +22,9 @@ exports[`QSN > stringify and parse > should encode and decode objects 1`] = `"[a
 
 exports[`QSN > stringify and parse > should encode and decode strings 1`] = `"hello"`;
 
-exports[`QSN > stringify and parse > should encode and decode strings 2`] = `"!!!,!:!["`;
+exports[`QSN > stringify and parse > should encode and decode strings 2`] = `"hello world!!"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings 3`] = `"!!!,!:!["`;
 
 exports[`QSN > stringify and parse > should escape and unescape special characters in keys and values 1`] = `"[!!key!,!:![:!!value!,!:![]"`;
 
