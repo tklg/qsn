@@ -2,12 +2,10 @@
   "name": "qsn",
   "version": "0.1.0",
   "private": false,
-  "files": [
-    "dist/**"
-  ],
-  "exports": {
-
-  },
+  "files": ["dist/**"],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "bunchee",
     "lint": "biome lint",
