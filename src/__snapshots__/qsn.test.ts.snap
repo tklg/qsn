@@ -1,33 +1,131 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`QSN > stringify and parse > should encode and decode arrays 1`] = `"[!1,two,!f,!n]"`;
+exports[`QSN > stringify and parse > should encode and decode arrays - [ [ +0 ] ] 1`] = `"[[!0]]"`;
+
+exports[`QSN > stringify and parse > should encode and decode arrays - [ [ [ [ [ +0 ] ] ] ] ] 1`] = `"[[[[[!0]]]]]"`;
+
+exports[`QSN > stringify and parse > should encode and decode arrays - [ [ [ [ [ +0 ], +0 ] ], +0 ] ] 1`] = `"[[[[[!0],!0]],!0]]"`;
+
+exports[`QSN > stringify and parse > should encode and decode arrays - [ 1, 'two', false, null ] 1`] = `"[!1,two,!f,!n]"`;
+
+exports[`QSN > stringify and parse > should encode and decode arrays - [ 1, [ 2, [ 3, null ] ] ] 1`] = `"[!1,[!2,[!3,!n]]]"`;
+
+exports[`QSN > stringify and parse > should encode and decode arrays - [ null ] 1`] = `"[!n]"`;
+
+exports[`QSN > stringify and parse > should encode and decode arrays - [] 1`] = `"[]"`;
 
 exports[`QSN > stringify and parse > should encode and decode booleans 1`] = `"!t"`;
 
 exports[`QSN > stringify and parse > should encode and decode booleans 2`] = `"!f"`;
 
-exports[`QSN > stringify and parse > should encode and decode complex structures 1`] = `"[arr:[!1,[foo:bar,baz:[!t,!f,!n]]],str:hello!, world!!,num:!123,bool:!t,nil:!n]"`;
+exports[`QSN > stringify and parse > should encode and decode complex structures - [ 'JSON makeTest Pattern pass1', { 'object with 1 member': [ 'array with 1 element' ] }, {}, [], -42, true, false, null, { integer: 1234567890, real: -9876.54321, e: 1.23456789e-13, E: 1.23456789e+34, '': 2.3456789012e+76, zero: +0, one: 1, space: ' ', quote: '"', backslash: '\\', controls: '\\b\\f\\n\\r\\t', slash: '/ & /', alpha: 'abcdefghijklmnopqrstuvwyz', ALPHA: 'ABCDEFGHIJKLMNOPQRSTUVWYZ', digit: '0123456789', '0123456789': 'digit', special: '\`1~!@#$%^&*()_+-={\\':[,]}|;.</>?', hex: 'ģ䕧覫췯ꯍ', true: true, false: false, null: null, array: [], object: {}, address: '50 St. James Street', url: 'http://www.JSON.org/', comment: '// /* <!-- --', '# -- --> */': ' ', ' s p a c e d ': [ 1, 2, 3, 4, 5, 6, 7 ], compact: [ 1, 2, 3, 4, 5, 6, 7 ], jsontext: '{"object with 1 member":["array with 1 element"]}', quotes: '&#34; " %22 0x22 034 &#x22;', '/\\\\"쫾몾ꮘﳞ볚\\b\\f\\n\\r\\t\`1~!@#$%^&*()_+-=[]{}|;:\\',./<>?': 'A key can be any string' }, 0.5, 98.6, 99.44, 1066, 10, 1, 0.1, 1, 2, 2, 'beans' ] 1`] = `
+"[JSON makeTest Pattern pass1,[object with 1 member:[array with 1 element]],[:],[],!-42,!t,!f,!n,[integer:!1234567890,real:!-9876.54321,e:!1.23456789e-13,E:!1.23456789e+34,'':!2.3456789012e+76,zero:!0,one:!1,space: ,quote:",backslash:\\,controls:
 
-exports[`QSN > stringify and parse > should encode and decode nested arrays 1`] = `"[!1,[!2,[!3,!n]],test]"`;
+	,slash:/ & /,alpha:abcdefghijklmnopqrstuvwyz,ALPHA:ABCDEFGHIJKLMNOPQRSTUVWYZ,digit:0123456789,0123456789:digit,special:\`1~!!@#$%^&*()_+-={!'!:![!,!]}|;.</>?,hex:ģ䕧覫췯ꯍ,true:!t,false:!f,null:!n,array:[],object:[:],address:50 St. James Street,url:http!://www.JSON.org/,comment:// /* <!!-- --,# -- --> */: , s p a c e d :[!1,!2,!3,!4,!5,!6,!7],compact:[!1,!2,!3,!4,!5,!6,!7],jsontext:{"object with 1 member"!:!["array with 1 element"!]},quotes:&#34; " %22 0x22 034 &#x22;,/\\"쫾몾ꮘﳞ볚
 
-exports[`QSN > stringify and parse > should encode and decode nested objects 1`] = `"[a:[b:[c:[!1,!2,!3]]],d:test]"`;
+	\`1~!!@#$%^&*()_+-=![!]{}|;!:!'!,./<>?:A key can be any string],!0.5,!98.6,!99.44,!1066,!10,!1,!0.1,!1,!2,!2,beans]"
+`;
+
+exports[`QSN > stringify and parse > should encode and decode complex structures - [ [], [] ] 1`] = `"[[],[]]"`;
+
+exports[`QSN > stringify and parse > should encode and decode complex structures - [ [], {} ] 1`] = `"[[],[:]]"`;
+
+exports[`QSN > stringify and parse > should encode and decode complex structures - [ { '[]': '{}' } ] 1`] = `"[[![!]:{}]]"`;
+
+exports[`QSN > stringify and parse > should encode and decode complex structures - [ {}, [] ] 1`] = `"[[:],[]]"`;
+
+exports[`QSN > stringify and parse > should encode and decode complex structures - [ {}, {} ] 1`] = `"[[:],[:]]"`;
+
+exports[`QSN > stringify and parse > should encode and decode complex structures - { foo: [ 2, { bar: [ 4, { baz: [ 6, { 'deep enough': 7 } ] } ] } ] } 1`] = `"[foo:[!2,[bar:[!4,[baz:[!6,[deep enough:!7]]]]]]]"`;
+
+exports[`QSN > stringify and parse > should encode and decode complex structures - { num: 1, alpha: 'abc', ignore: 'me', change: 'to a function', toUpper: true, obj: { nested_num: 50, alpha: 'abc', nullable: null }, arr: [ 1, 7, 2 ] } 1`] = `"[num:!1,alpha:abc,ignore:me,change:to a function,toUpper:!t,obj:[nested_num:!50,alpha:abc,nullable:!n],arr:[!1,!7,!2]]"`;
 
 exports[`QSN > stringify and parse > should encode and decode null 1`] = `"!n"`;
 
-exports[`QSN > stringify and parse > should encode and decode numbers 1`] = `"!42"`;
+exports[`QSN > stringify and parse > should encode and decode numbers - -42 1`] = `"!-42"`;
 
-exports[`QSN > stringify and parse > should encode and decode numbers 2`] = `"!-3.14"`;
+exports[`QSN > stringify and parse > should encode and decode numbers - -9876.54321 1`] = `"!-9876.54321"`;
 
-exports[`QSN > stringify and parse > should encode and decode objects 1`] = `"[a:!1,b:two,c:!f,d:!n]"`;
+exports[`QSN > stringify and parse > should encode and decode numbers - 0 1`] = `"!0"`;
 
-exports[`QSN > stringify and parse > should encode and decode strings 1`] = `"hello"`;
+exports[`QSN > stringify and parse > should encode and decode numbers - 0.1 1`] = `"!0.1"`;
 
-exports[`QSN > stringify and parse > should encode and decode strings 2`] = `"hello world!!"`;
+exports[`QSN > stringify and parse > should encode and decode numbers - 0.5 1`] = `"!0.5"`;
 
-exports[`QSN > stringify and parse > should encode and decode strings 3`] = `"!!!,!:!["`;
+exports[`QSN > stringify and parse > should encode and decode numbers - 1 1`] = `"!1"`;
+
+exports[`QSN > stringify and parse > should encode and decode numbers - 1 2`] = `"!1"`;
+
+exports[`QSN > stringify and parse > should encode and decode numbers - 1 3`] = `"!1"`;
+
+exports[`QSN > stringify and parse > should encode and decode numbers - 1.23456789e-13 1`] = `"!1.23456789e-13"`;
+
+exports[`QSN > stringify and parse > should encode and decode numbers - 2 1`] = `"!2"`;
+
+exports[`QSN > stringify and parse > should encode and decode numbers - 2 2`] = `"!2"`;
+
+exports[`QSN > stringify and parse > should encode and decode numbers - 2.3456789012e+76 1`] = `"!2.3456789012e+76"`;
+
+exports[`QSN > stringify and parse > should encode and decode numbers - 10 1`] = `"!10"`;
+
+exports[`QSN > stringify and parse > should encode and decode numbers - 98.6 1`] = `"!98.6"`;
+
+exports[`QSN > stringify and parse > should encode and decode numbers - 99.44 1`] = `"!99.44"`;
+
+exports[`QSN > stringify and parse > should encode and decode numbers - 1066 1`] = `"!1066"`;
+
+exports[`QSN > stringify and parse > should encode and decode numbers - 1234567890 1`] = `"!1234567890"`;
+
+exports[`QSN > stringify and parse > should encode and decode objects - { '': '' } 1`] = `"['':'']"`;
+
+exports[`QSN > stringify and parse > should encode and decode objects - { a: 1, b: 'two', c: false, d: null } 1`] = `"[a:!1,b:two,c:!f,d:!n]"`;
+
+exports[`QSN > stringify and parse > should encode and decode objects - {} 1`] = `"[:]"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - 	 1`] = `"	"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings -   1`] = `" "`;
+
+exports[`QSN > stringify and parse > should encode and decode strings -  1`] = `"''"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - " 1`] = `"""`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - # -- --> */ 1`] = `"# -- --> */"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - & 1`] = `"&"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - &#34; " %22 0x22 034 &#x22; 1`] = `"&#34; " %22 0x22 034 &#x22;"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - / & / 1`] = `"/ & /"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - / 1`] = `"/"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - // /* <!-- -- 1`] = `"// /* <!!-- --"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - /\\"쫾몾ꮘﳞ볚	\`1~!@#$%^&*()_+-=[]{}|;:',./<>? 1`] = `"/\\"쫾몾ꮘﳞ볚	\`1~!!@#$%^&*()_+-=![!]{}|;!:!'!,./<>?"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - ; 1`] = `";"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - @ 1`] = `"@"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - @:0&@:0&@:0&:0 1`] = `"@!:0&@!:0&@!:0&!:0"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - \\ 1`] = `"\\"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - \`1~!@#$%^&*()_+-={':[,]}|;.</>? 1`] = `"\`1~!!@#$%^&*()_+-={!'!:![!,!]}|;.</>?"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - {"object with 1 member":["array with 1 element"]} 1`] = `"{"object with 1 member"!:!["array with 1 element"!]}"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - | 1`] = `"|"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - 0123456789 1`] = `"0123456789"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - ABCDEFGHIJKLMNOPQRSTUVWYZ 1`] = `"ABCDEFGHIJKLMNOPQRSTUVWYZ"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - abcdefghijklmnopqrstuvwyz 1`] = `"abcdefghijklmnopqrstuvwyz"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - space character 1`] = `"space character"`;
+
+exports[`QSN > stringify and parse > should encode and decode strings - ģ䕧覫췯ꯍ 1`] = `"ģ䕧覫췯ꯍ"`;
 
 exports[`QSN > stringify and parse > should escape and unescape special characters in keys and values 1`] = `"[!!key!,!:![:!!value!,!:![]"`;
-
-exports[`QSN > stringify and parse > should handle empty array and object 1`] = `"[]"`;
-
-exports[`QSN > stringify and parse > should handle empty array and object 2`] = `"[:]"`;

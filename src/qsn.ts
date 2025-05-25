@@ -5,7 +5,15 @@ const SEPARATOR_CHAR = ",";
 const OBJECT_KV_CHAR = ":";
 const COLLECTION_START_CHAR = "[";
 const COLLECTION_END_CHAR = "]";
-const ESCAPABLE_CHARS = [ESCAPE_CHAR, SEPARATOR_CHAR, OBJECT_KV_CHAR, COLLECTION_START_CHAR];
+const QUOTE_CHAR = "'";
+const ESCAPABLE_CHARS = [
+  ESCAPE_CHAR,
+  SEPARATOR_CHAR,
+  OBJECT_KV_CHAR,
+  COLLECTION_START_CHAR,
+  COLLECTION_END_CHAR,
+  QUOTE_CHAR,
+];
 const REGEX_SPECIAL_CHARS = ["[", "("];
 
 const isLeafValue = (value: unknown): value is JsonLeafValue => {
@@ -13,6 +21,10 @@ const isLeafValue = (value: unknown): value is JsonLeafValue => {
 };
 
 const escapeString = (str: string): string => {
+  if (str === "") {
+    return "''";
+  }
+
   const reg = new RegExp(
     `(${ESCAPABLE_CHARS.map((c) => (REGEX_SPECIAL_CHARS.includes(c) ? `\\${c}` : c)).join("|")})`,
     "g",
@@ -21,6 +33,10 @@ const escapeString = (str: string): string => {
 };
 
 const unescapeString = (str: string): string => {
+  if (str === "''") {
+    return "";
+  }
+
   const reg = new RegExp(
     `${ESCAPE_CHAR}(${ESCAPABLE_CHARS.map((c) => (REGEX_SPECIAL_CHARS.includes(c) ? `\\${c}` : c)).join("|")})`,
     "g",
@@ -53,7 +69,7 @@ const decodeLeafValue = (value: string): JsonLeafValue => {
     case `${ESCAPE_CHAR}f`:
       return false;
     default: {
-      if (new RegExp(`^${ESCAPE_CHAR}-?\\d+(\\.\\d+)?$`).test(value)) {
+      if (new RegExp(`^${ESCAPE_CHAR}-?\\d+(\\.\\d+)?(e[+-]\\d+)?$`).test(value)) {
         return Number.parseFloat(value.slice(ESCAPE_CHAR.length));
       }
 
@@ -63,6 +79,10 @@ const decodeLeafValue = (value: string): JsonLeafValue => {
 };
 
 const encode = (json: JsonValue): string => {
+  if (json === undefined) {
+    return "";
+  }
+
   if (isLeafValue(json)) {
     return encodeLeafValue(json);
   }
@@ -128,10 +148,13 @@ const decode = <T extends JsonValue = JsonValue>(encoded: string): T => {
       return -1;
     };
 
+    // [[:],[:]]
+    // [:],[:]
     const firstUnescapedSep = findUnescaped(SEPARATOR_CHAR);
     const firstUnescapedColon = findUnescaped(OBJECT_KV_CHAR);
 
     if (
+      !inner.startsWith(COLLECTION_START_CHAR) && // If the inner part also starts with "[", it is in an array
       firstUnescapedColon !== -1 &&
       (firstUnescapedSep === -1 || firstUnescapedColon < firstUnescapedSep)
     ) {
