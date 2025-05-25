@@ -25,7 +25,7 @@ import { QSN } from "qsn";
 ```ts
 const obj = { foo: "bar", arr: [1, 2, 3], flag: true };
 const encoded = QSN.stringify(obj);
-console.log(encoded); // [foo:bar,arr:[!1,!2,!3],flag:!t]
+console.log(encoded); // (foo:bar,arr:(!1,!2,!3),flag:!t)
 ```
 
 ### Decoding
@@ -36,8 +36,8 @@ console.log(decoded); // { foo: "bar", arr: [1, 2, 3], flag: true }
 
 ### Works with arrays and primitives
 ```ts
-QSN.stringify([1, "two", false, null]); // [!1,two,!f,!n]
-QSN.parse("[!1,two,!f,!n]"); // [1, "two", false, null]
+QSN.stringify([1, "two", false, null]); // (!1,two,!f,!n)
+QSN.parse("(!1,two,!f,!n)"); // [1, "two", false, null]
 
 QSN.stringify("hello, world!"); // hello!, world!!
 QSN.parse("hello!, world!!"); // "hello, world!"
@@ -53,7 +53,7 @@ const value = {
   nil: null,
 };
 const encoded = QSN.stringify(value);
-console.log(encoded); // [arr:[!1,[foo:bar,baz:[!t,!f,!n]]],str:hello!, world!!,num:!123,bool:!t,nil:!n]
+console.log(encoded); // (arr:(!1,(foo:bar,baz:(!t,!f,!n))),str:hello!, world!!,num:!123,bool:!t,nil:!n)
 console.log(QSN.parse(encoded)); // original object
 ```
 
