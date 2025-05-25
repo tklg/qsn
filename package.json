@@ -2,6 +2,7 @@
   "name": "qsn",
   "version": "0.1.0",
   "private": false,
+  "type": "module",
   "files": ["dist/**"],
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -19,5 +20,14 @@
     "typescript": "^5.3.3",
     "vitest": "^2.1.9"
   },
-  "packageManager": "pnpm@10.11.0"
+  "packageManager": "pnpm@10.11.0",
+  "repository": {
+    "url": "https://github.com/tklg/qsn"
+  },
+  "author": {
+    "name": "tklg"
+  },
+  "description": "QSN is a compact, human-readable, and URL-safe encoding for JSON-like data structures",
+  "keywords": ["qs", "querystring", "json"],
+  "license": "MIT"
 }
