@@ -1,0 +1,99 @@
+{
+  "$schema": "./packages/hooks/node_modules/@biomejs/biome/configuration_schema.json",
+  "files": {
+    "ignoreUnknown": true
+  },
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "correctness": {
+        "noConstantMathMinMaxClamp": "warn",
+        "useHookAtTopLevel": "warn",
+        "noUnusedImports": "warn",
+        "useExhaustiveDependencies": {
+          "level": "error",
+          "options": {
+            "hooks": [
+              {
+                "name": "useCallbackRef",
+                "stableResult": true
+              },
+              {
+                "name": "useSetAtomState",
+                "stableResult": true
+              },
+              {
+                "name": "useAtomState",
+                "stableResult": [
+                  1
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "suspicious": {
+        "noEmptyBlockStatements": "warn"
+      },
+      "style": {
+        "noImplicitBoolean": "warn",
+        "noNegationElse": "warn",
+        "useCollapsedElseIf": "warn",
+        "useFragmentSyntax": "warn",
+        "useBlockStatements": "warn",
+        "useShorthandArrayType": "warn",
+        "useShorthandAssign": "warn"
+      },
+      "nursery": {
+        "noDuplicateElseIf": "warn",
+        "noEvolvingTypes": "warn",
+        "noUnusedFunctionParameters": "warn",
+        "noUselessStringConcat": "warn",
+        "noYodaExpression": "warn",
+        "useConsistentBuiltinInstantiation": "warn",
+        "useDateNow": "warn",
+        "useDefaultSwitchClause": "warn",
+        "useSortedClasses": {
+          "options": {
+            "functions": [
+              "conditionalJoin"
+            ]
+          },
+          "level": "warn",
+          "fix": "safe"
+        },
+        "useExplicitLengthCheck": "warn",
+        "useNumberToFixedDigitsArgument": "warn",
+        "useThrowOnlyError": "warn"
+      }
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "javascript": {
+    "formatter": {
+      "semicolons": "always"
+    }
+  },
+  "css": {
+    "formatter": {
+      "enabled": true
+    },
+    "linter": {
+      "enabled": true
+    }
+  }
+}

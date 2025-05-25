@@ -1,0 +1,26 @@
+{
+  "name": "qsn",
+  "version": "0.1.0",
+  "private": false,
+  "files": [
+    "dist/**"
+  ],
+  "exports": {
+
+  },
+  "scripts": {
+    "build": "bunchee",
+    "lint": "biome lint",
+    "lint:apply": "biome format --write && biome lint --write",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3",
+    "@types/node": "^20.11.24",
+    "bunchee": "^5.2.2",
+    "jsdom": "^24.1.1",
+    "typescript": "^5.3.3",
+    "vitest": "^2.1.9"
+  },
+  "packageManager": "pnpm@10.11.0"
+}
