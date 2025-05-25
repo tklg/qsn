@@ -1,5 +1,5 @@
 {
-  "$schema": "./packages/hooks/node_modules/@biomejs/biome/configuration_schema.json",
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
     "ignoreUnknown": true
   },
@@ -7,9 +7,6 @@
     "enabled": true,
     "clientKind": "git",
     "useIgnoreFile": true
-  },
-  "organizeImports": {
-    "enabled": true
   },
   "linter": {
     "enabled": true,
@@ -37,10 +34,13 @@
               }
             ]
           }
-        }
+        },
+        "noUnusedFunctionParameters": "warn"
       },
       "suspicious": {
-        "noEmptyBlockStatements": "warn"
+        "noEmptyBlockStatements": "warn",
+        "noEvolvingTypes": "warn",
+        "useNumberToFixedDigitsArgument": "warn"
       },
       "style": {
         "noImplicitBoolean": "warn",
@@ -49,27 +49,26 @@
         "useFragmentSyntax": "warn",
         "useBlockStatements": "warn",
         "useShorthandArrayType": "warn",
-        "useShorthandAssign": "warn"
+        "useShorthandAssign": "warn",
+        "useConsistentBuiltinInstantiation": "warn",
+        "useDefaultSwitchClause": "warn",
+        "useExplicitLengthCheck": "warn",
+        "useThrowOnlyError": "warn",
+        "noYodaExpression": "warn"
+      },
+      "complexity": {
+        "noUselessStringConcat": "warn",
+        "useDateNow": "warn"
       },
       "nursery": {
         "noDuplicateElseIf": "warn",
-        "noEvolvingTypes": "warn",
-        "noUnusedFunctionParameters": "warn",
-        "noUselessStringConcat": "warn",
-        "noYodaExpression": "warn",
-        "useConsistentBuiltinInstantiation": "warn",
-        "useDateNow": "warn",
-        "useDefaultSwitchClause": "warn",
         "useSortedClasses": {
           "options": {
             "functions": ["conditionalJoin"]
           },
           "level": "warn",
           "fix": "safe"
-        },
-        "useExplicitLengthCheck": "warn",
-        "useNumberToFixedDigitsArgument": "warn",
-        "useThrowOnlyError": "warn"
+        }
       }
     }
   },
