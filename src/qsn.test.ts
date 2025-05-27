@@ -1,4 +1,4 @@
-import { QSN } from "./qsn";
+import { QSN } from "./index";
 import type { JsonValue } from "./types";
 
 describe("QSN", () => {
@@ -42,6 +42,10 @@ describe("QSN", () => {
       expect(QSN.parse(QSN.stringify(n))).toBe(n);
 
       expect(QSN.stringify(n)).toMatchSnapshot();
+    });
+
+    it("should encode e+ notation numbers as just e, with no +", () => {
+      expect(QSN.stringify(1.234e25)).toBe("!1.234e25");
     });
 
     it.each([
