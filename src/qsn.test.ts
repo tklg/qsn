@@ -2,22 +2,22 @@ import { QSN } from "./index";
 import type { JsonValue } from "./types";
 
 describe("QSN", () => {
-  describe("stringify and parse", () => {
+  describe("encode and decode", () => {
     it("should encode and decode null", () => {
       const value: null = null;
-      const encoded = QSN.stringify(value);
+      const encoded = QSN.encode(value);
       expect(encoded).toBe("!n");
-      expect(QSN.parse(encoded)).toBe(null);
+      expect(QSN.decode(encoded)).toBe(null);
 
       expect(encoded).toMatchSnapshot();
     });
 
     it("should encode and decode booleans", () => {
-      expect(QSN.parse(QSN.stringify(true))).toBe(true);
-      expect(QSN.parse(QSN.stringify(false))).toBe(false);
+      expect(QSN.decode(QSN.encode(true))).toBe(true);
+      expect(QSN.decode(QSN.encode(false))).toBe(false);
 
-      expect(QSN.stringify(true)).toMatchSnapshot();
-      expect(QSN.stringify(false)).toMatchSnapshot();
+      expect(QSN.encode(true)).toMatchSnapshot();
+      expect(QSN.encode(false)).toMatchSnapshot();
     });
 
     it.each([
@@ -39,13 +39,13 @@ describe("QSN", () => {
       [2],
       [-42],
     ])("should encode and decode numbers - %s", (n) => {
-      expect(QSN.parse(QSN.stringify(n))).toBe(n);
+      expect(QSN.decode(QSN.encode(n))).toBe(n);
 
-      expect(QSN.stringify(n)).toMatchSnapshot();
+      expect(QSN.encode(n)).toMatchSnapshot();
     });
 
     it("should encode e+ notation numbers as just e, with no +", () => {
-      expect(QSN.stringify(1.234e25)).toBe("!1.234e25");
+      expect(QSN.encode(1.234e25)).toBe("!1.234e25");
     });
 
     it.each([
@@ -73,8 +73,8 @@ describe("QSN", () => {
       ["&#34; \u0022 %22 0x22 034 &#x22;"],
       ["/\\\"\uCAFE\uBABE\uAB98\uFCDE\ubcda\uef4A\b\f\t`1~!@#$%^&*()_+-=[]{}|;:',./<>?"],
     ])("should encode and decode strings - %s", (s) => {
-      const encoded = QSN.stringify(s);
-      expect(QSN.parse(encoded)).toBe(s);
+      const encoded = QSN.encode(s);
+      expect(QSN.decode(encoded)).toBe(s);
       expect(encoded).toMatchSnapshot();
     });
 
@@ -87,8 +87,8 @@ describe("QSN", () => {
       [[1, "two", false, null]],
       [[null]],
     ])("should encode and decode arrays - %s", (s) => {
-      const encoded = QSN.stringify(s as JsonValue);
-      expect(QSN.parse(encoded)).toEqual(s);
+      const encoded = QSN.encode(s as JsonValue);
+      expect(QSN.decode(encoded)).toEqual(s);
 
       expect(encoded).toMatchSnapshot();
     });
@@ -96,8 +96,8 @@ describe("QSN", () => {
     it.each([[{}], [{ "": "" }], [{ a: 1, b: "two", c: false, d: null }]])(
       "should encode and decode objects - %s",
       (s) => {
-        const encoded = QSN.stringify(s);
-        expect(QSN.parse(encoded)).toEqual(s);
+        const encoded = QSN.encode(s);
+        expect(QSN.decode(encoded)).toEqual(s);
 
         expect(encoded).toMatchSnapshot();
       },
@@ -184,16 +184,16 @@ describe("QSN", () => {
         ],
       ],
     ])("should encode and decode complex structures - %s", (s) => {
-      const encoded = QSN.stringify(s as JsonValue);
-      expect(QSN.parse(encoded)).toEqual(s);
+      const encoded = QSN.encode(s as JsonValue);
+      expect(QSN.decode(encoded)).toEqual(s);
 
       expect(encoded).toMatchSnapshot();
     });
 
     it("should escape and unescape special characters in keys and values", () => {
       const obj = { "!key,:[": "!value,:[" };
-      const encoded = QSN.stringify(obj);
-      expect(QSN.parse(encoded)).toEqual(obj);
+      const encoded = QSN.encode(obj);
+      expect(QSN.decode(encoded)).toEqual(obj);
       expect(encoded).toMatchSnapshot();
     });
   });

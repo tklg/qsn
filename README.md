@@ -21,14 +21,14 @@ npm install qsn
 import { QSN } from "qsn";
 ```
 
-### Encoding
+### Stringify
 ```ts
 const obj = { foo: "bar", arr: [1, 2, 3], flag: true };
 const encoded = QSN.stringify(obj);
 console.log(encoded); // (foo:bar,arr:(!1,!2,!3),flag:!t)
 ```
 
-### Decoding
+### Parse
 ```ts
 const decoded = QSN.parse(encoded);
 console.log(decoded); // { foo: "bar", arr: [1, 2, 3], flag: true }
@@ -64,6 +64,33 @@ Encodes a value (object, array, string, number, boolean, or null) into QSN forma
 
 ### QSN.parse(str: string): JsonValue
 Decodes a QSN string back into the original value.
+
+### QSN.encode(value: string): string
+Similar to `stringify`, but runs the result through a modified `encodeURIComponent` that does not %-encode the comma (`,`) and colon (`:`) characters.
+
+### QSN.decode(value: string): string
+Similar to `parse`, but runs the input through `decodeURIComponent` first.
+
+## Example: Constructing a Query String
+
+You can use QSN to easily encode structured data for use in a URL query string:
+
+```ts
+import { QSN } from "qsn";
+
+const params = {
+  user: "alice",
+  filters: { tags: ["cat", "dog"], active: true },
+  page: 2,
+};
+
+const queryString = `?data=${QSN.encode(params)}`;
+// Result: ?data=(user:alice,filters:(tags:(!cat,!dog),active:!t),page:!2)
+
+// To decode on the other side:
+const decoded = QSN.decode(queryString.slice(6));
+// decoded is the original params object
+```
 
 ## When to use QSN?
 - When you need to pass structured data in a URL or query string

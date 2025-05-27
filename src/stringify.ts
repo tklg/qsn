@@ -43,7 +43,7 @@ const stringifyLeafValue = (value: JsonLeafValue): string => {
 };
 
 /**
- * Serializes a `JsonValue` into a custom querystring-safe string representation.
+ * Serializes a `JsonValue` into a string.
  *
  * @param json - The JSON value to serialize.
  * @returns The custom string representation of the input JSON value.
