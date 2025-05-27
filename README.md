@@ -11,14 +11,14 @@ QSN is a compact, human-readable, and URL-safe encoding for JSON-like data struc
 
 ## Install
 ```sh
-npm install qsn
+npm install @objectively/qsn
 ```
 
 ## Usage
 
 ### Import
 ```ts
-import { QSN } from "qsn";
+import { QSN } from "@objectively/qsn";
 ```
 
 ### Stringify
@@ -76,7 +76,7 @@ Similar to `parse`, but runs the input through `decodeURIComponent` first.
 You can use QSN to easily encode structured data for use in a URL query string:
 
 ```ts
-import { QSN } from "qsn";
+import { QSN } from "@objectively/qsn";
 
 const params = {
   user: "alice",
