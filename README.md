@@ -65,10 +65,10 @@ Encodes a value (object, array, string, number, boolean, or null) into QSN forma
 ### QSN.parse(str: string): JsonValue
 Decodes a QSN string back into the original value.
 
-### QSN.encode(value: string): string
+### QSN.encode(value: JsonValue): string
 Similar to `stringify`, but runs the result through a modified `encodeURIComponent` that does not %-encode the comma (`,`) and colon (`:`) characters.
 
-### QSN.decode(value: string): string
+### QSN.decode(value: string): JsonValue
 Similar to `parse`, but runs the input through `decodeURIComponent` first.
 
 ## Example: Constructing a Query String
