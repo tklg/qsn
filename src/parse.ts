@@ -37,6 +37,17 @@ const parseLeafValue = (value: string): JsonLeafValue => {
   }
 };
 
+/**
+ * Parses an encoded string into a JSON-compatible value of type `T`.
+ *
+ * The function supports parsing of primitive values, arrays, and objects
+ * encoded with custom escape and separator characters. It handles nested
+ * structures and escaped characters within the encoded string.
+ *
+ * @typeParam T - The expected return type, extending `JsonValue`. Defaults to `JsonValue`.
+ * @param encoded - The encoded string to parse.
+ * @returns The parsed value as type `T`.
+ */
 export const parse = <T extends JsonValue = JsonValue>(encoded: string): T => {
   if (encoded.startsWith(ESCAPE_CHAR)) {
     return parseLeafValue(encoded) as T;
@@ -103,8 +114,10 @@ export const parse = <T extends JsonValue = JsonValue>(encoded: string): T => {
         result[key] = parse(value);
         i = valueEnd + 1;
       }
+
       return result as T;
     }
+
     const items: JsonValue[] = [];
     let i = 0;
     while (i < inner.length) {
@@ -129,5 +142,6 @@ export const parse = <T extends JsonValue = JsonValue>(encoded: string): T => {
     }
     return items as T;
   }
+
   return parseLeafValue(encoded) as T;
 };

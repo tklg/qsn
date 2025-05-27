@@ -42,6 +42,13 @@ const stringifyLeafValue = (value: JsonLeafValue): string => {
   return escapeString(value);
 };
 
+/**
+ * Serializes a `JsonValue` into a custom querystring-safe string representation.
+ *
+ * @param json - The JSON value to serialize.
+ * @returns The custom string representation of the input JSON value.
+ * @throws {Error} If an object key is not a string or if the value type is unsupported.
+ */
 export const stringify = (json: JsonValue): string => {
   if (json === undefined) {
     return "";
